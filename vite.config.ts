@@ -17,7 +17,7 @@ export default defineConfig({
       fileName: (_, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
-      external: ["vue"],
+      external: ["vue", "@bycar-in-ua/sdk"],
       output: {
         globals: {
           vue: "Vue",

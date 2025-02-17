@@ -1,14 +1,15 @@
 {
   "name": "@bycar-in-ua/ui-lib",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "description": "UI library for Bycar",
   "main": "dist/index.js",
   "scripts": {
-    "build": "vue-tsc -b && vite build"
+    "build": "vue-tsc -b && vite build",
+    "release": "npm run build && changeset publish"
   },
   "devDependencies": {
-    "@types/node": "^22.13.4",
+    "@changesets/cli": "^2.27.12",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "typescript": "~5.7.2",
@@ -17,6 +18,8 @@
     "vue-tsc": "^2.2.0"
   },
   "peerDependencies": {
-    "vue": "^3.5.0"
+    "@bycar-in-ua/sdk": "^0.2.6",
+    "vue": "^3.5.x",
+    "vue-i18n": "^10.x"
   }
 }
