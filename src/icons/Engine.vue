@@ -1,12 +1,6 @@
-<script setup lang="ts">
-import type { IconProps } from "./interface";
-
-const { color = "white" } = defineProps<IconProps>();
-</script>
-
 <template>
   <svg
-    :fill="color"
+    fill="white"
     viewBox="0 -14.14 122.88 122.88"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
