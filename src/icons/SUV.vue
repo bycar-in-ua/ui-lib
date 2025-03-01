@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IconProps } from './interface';
+import type { IconProps } from "./interface";
 
-const { color = 'white' } = defineProps<IconProps>();
+const { color = "white" } = defineProps<IconProps>();
 </script>
 
 <template>

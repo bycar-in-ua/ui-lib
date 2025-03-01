@@ -1,7 +1,7 @@
-import type { Composer } from 'vue-i18n';
-import type { Complectation, Vehicle } from '@bycar-in-ua/sdk';
+import type { Composer } from "vue-i18n";
+import type { Complectation, Vehicle } from "@bycar-in-ua/sdk";
 
-import type { InfoBullet } from '../interfaces';
+import type { InfoBullet } from "./types";
 import {
   ElectricStation,
   Engine as EngineIcon,
@@ -9,11 +9,11 @@ import {
   GearboxAuto,
   GearboxManual,
   Speedometer,
-} from '../icons';
+} from "../icons";
 
-export function getVehicleInfoBullets(
+export function getShortInfoBullets(
   vehicle: Vehicle,
-  t: Composer['t']
+  t: Composer["t"]
 ): InfoBullet[] {
   const bullets: InfoBullet[] = [];
 
@@ -29,8 +29,8 @@ export function getVehicleInfoBullets(
 
   if (basePowerUnit.engine?.power) {
     bullets.push({
-      text: `${basePowerUnit.engine.power} ${t('units.power')}`,
-      title: `${t('from')} ${basePowerUnit.engine.power} ${t('units.power')}`,
+      text: `${basePowerUnit.engine.power} ${t("units.power")}`,
+      title: `${t("from")} ${basePowerUnit.engine.power} ${t("units.power")}`,
       icon: EngineIcon,
     });
   }
@@ -46,10 +46,10 @@ export function getVehicleInfoBullets(
     bullets.push({
       text: type,
       title: `${type} ${
-        basePowerUnit.transmission.gearbox?.subType ? `(${subType})` : ''
+        basePowerUnit.transmission.gearbox?.subType ? `(${subType})` : ""
       }`,
       icon:
-        basePowerUnit.transmission?.gearbox.type === 'mechanical'
+        basePowerUnit.transmission?.gearbox.type === "mechanical"
           ? GearboxManual
           : GearboxAuto,
     });
@@ -61,13 +61,13 @@ export function getVehicleInfoBullets(
   ) {
     bullets.push({
       text: `${basePowerUnit.engine.electric.electricDistanceReserve} км.`,
-      title: t('vehicle.engine.electricDistanceReserve'),
+      title: t("vehicle.engine.electricDistanceReserve"),
       icon: ElectricStation,
     });
   } else if (basePowerUnit.consumption?.mixed) {
     bullets.push({
-      text: `${basePowerUnit.consumption.mixed} ${t('units.volume')}.`,
-      title: t('vehicle.powerUnits.consumption'),
+      text: `${basePowerUnit.consumption.mixed} ${t("units.volume")}.`,
+      title: t("vehicle.powerUnits.consumption"),
       icon: GasStation,
     });
   }
@@ -75,17 +75,17 @@ export function getVehicleInfoBullets(
   if (basePowerUnit.maxSpeed) {
     bullets.push({
       text: `${basePowerUnit.maxSpeed} км./г`,
-      title: t('vehicle.powerUnits.maxSpeed'),
+      title: t("vehicle.powerUnits.maxSpeed"),
       icon: Speedometer,
     });
   }
 
-  return bullets.slice(0, 3);
+  return bullets;
 }
 
 export function getPriceRange(complectations?: Complectation[]): string {
   if (!complectations?.length) {
-    return '';
+    return "";
   }
 
   const prices = complectations
@@ -95,7 +95,7 @@ export function getPriceRange(complectations?: Complectation[]): string {
     .filter(Boolean) as number[];
 
   if (!prices.length) {
-    return '';
+    return "";
   }
 
   if (prices.length === 1) {
@@ -117,17 +117,17 @@ export function getCarTitle(vehicle: Vehicle) {
 
   titleParts.push(vehicle.model);
 
-  return titleParts.join(' ').trim();
+  return titleParts.join(" ").trim();
 }
 
 export function getComplectationsSummary(
-  complectations: Vehicle['complectations'] = []
+  complectations: Vehicle["complectations"] = []
 ) {
   return complectations
     ?.map((complectation) => {
       const priceRange = getPriceRange([complectation]);
 
-      return complectation.displayName + (priceRange ? ` (${priceRange})` : '');
+      return complectation.displayName + (priceRange ? ` (${priceRange})` : "");
     })
-    .join(', ');
+    .join(", ");
 }
