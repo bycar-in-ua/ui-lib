@@ -21,7 +21,7 @@ import {
   Sedan,
 } from "../icons";
 
-export function   (
+export function getFullInfoBullets(
   {
     car,
     powerUnit,
